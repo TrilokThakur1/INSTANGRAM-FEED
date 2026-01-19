@@ -37,12 +37,12 @@ def postUpdate(request,pk):
         serializer.save()
     return Response(serializer.data)
 
-from django.shortcuts import get_object_or_404
+
 
 @api_view(['DELETE'])
-def postDelete(request,pk):
+def postDelete(request,id):
     try:
-        post = PostModel.objects.get(id=pk)
+        post = PostModel.objects.get(id=id)
         post.delete()
         return Response("Deleted")
     except PostModel.DoesNotExist:
@@ -53,3 +53,5 @@ def postListByUser(request,pk):
     posts = PostModel.objects.filter(author=pk)
     serializer = PostSerializer(posts, many=True)
     return Response(serializer.data)
+
+

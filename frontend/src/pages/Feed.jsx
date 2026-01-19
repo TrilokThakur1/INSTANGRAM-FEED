@@ -14,7 +14,7 @@ export default function Feed() {
 
   const getPosts = async () => {
     try {
-      let res = await axios.get(apiUrl + "/post/list");
+      let res = await axios.get(apiUrl + "/post/list/");
       setPosts(res.data);
     } catch (err) {
       console.log(err);
@@ -37,7 +37,7 @@ export default function Feed() {
     };
 
     try {
-      await axios.post(apiUrl + "/post/create", data);
+      await axios.post(apiUrl + "/post/create/", data);
       e.target.reset();
       await getPosts(); // Wait for fetch before finishing state
     } catch (error) {
@@ -50,7 +50,7 @@ export default function Feed() {
   async function handleDelete(postId) {
     if (!window.confirm("Are you sure you want to delete this post?")) return;
     try {
-      await axios.delete(apiUrl + `/post/delete/${postId}`);
+      await axios.delete(apiUrl + `/post/delete/${postId}/`);
       setPosts(posts.filter(post => post.id !== postId));
     } catch (error) {
       console.error("Error deleting post:", error);
@@ -129,7 +129,12 @@ export default function Feed() {
               </div>
               
               {/* Delete Button (Only for Author) */}
-              {user.id === post.author?.id && (
+              {(function() {
+                const authorId = post.author?.id || post.author;
+                const userId = user?.id;
+                // Loose equality for string/number mismatch
+                return userId == authorId; 
+              })() && (
                 <button
                   onClick={() => handleDelete(post.id)}
                   className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"

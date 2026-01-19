@@ -14,7 +14,7 @@ export default function Profile({ user, setUser }) {
 
   const getUserPosts = async () => {
     try {
-      const res = await axios.get(apiUrl + "/post/list/user/" + user.id);
+      const res = await axios.get(apiUrl + "/post/list/user/" + user.id + "/");
       setUserPosts(res.data);
     } catch (error) {
       console.error("Error fetching user posts:", error);
@@ -24,7 +24,7 @@ export default function Profile({ user, setUser }) {
   const handleDelete = async (postId) => {
     if (!window.confirm("Are you sure you want to delete this post?")) return;
     try {
-      await axios.delete(apiUrl + `/post/delete/${postId}`);
+      await axios.delete(apiUrl + `/post/delete/${postId}/`);
       setUserPosts(userPosts.filter(post => post.id !== postId));
     } catch (error) {
       console.error("Error deleting post:", error);

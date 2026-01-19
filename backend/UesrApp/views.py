@@ -1,5 +1,8 @@
 from rest_framework.decorators import api_view              
 from rest_framework.response import Response
+from rest_framework import status   
+from django.contrib.auth.hashers import check_password
+from django.contrib.auth.models import User
 from .models import UserModel    
 from .serializers import UserSerializer
 
@@ -10,17 +13,25 @@ def userRegister(request):
         serializer.save()
     return Response(serializer.data)
 
+
+
 @api_view(['POST'])
 def userLogin(request):
-    username = request.data['email']
-    password = request.data['password']
+    email = request.data.get('email')
+    password = request.data.get('password')
 
-    user = UserModel.objects.filter(email=username,password=password).first()
-    if user:
-        serializer = UserSerializer(user,many=False)
+    try:
+        user = UserModel.objects.get(email=email)
+    except UserModel.DoesNotExist:
+        return Response({"error": "Invalid Credentials"}, status=400)
+
+    # 🔑 password verify
+    if check_password(password, user.password):
+        serializer = UserSerializer(user)
         return Response(serializer.data)
-    else:
-        return Response(False)
+
+    return Response({"error": "Invalid Credentials"}, status=400)
+
     
 @api_view(['GET']) 
 def userDetail(request,pk):
