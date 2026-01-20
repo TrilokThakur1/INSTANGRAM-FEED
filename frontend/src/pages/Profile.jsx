@@ -4,7 +4,10 @@ import axios from 'axios';
 
 export default function Profile({ user, setUser }) {
   const [userPosts, setUserPosts] = useState([]);
-  const apiUrl = import.meta.env.VITE_API_URL || "https://instangram-feed-backend.onrender.com";
+  const apiUrl =
+  import.meta.env.VITE_API_URL ||
+  "https://instangram-feed-backend.onrender.com/api";
+
 
   useEffect(() => {
     if (user?.id) {

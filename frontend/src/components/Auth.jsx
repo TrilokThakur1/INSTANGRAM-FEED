@@ -4,7 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 export default function Auth({ user, setUser }) {
   const navigate = useNavigate();
-  const apiUrl = import.meta.env.VITE_API_URL || "https://instangram-feed-backend.onrender.com";
+ const apiUrl =
+  import.meta.env.VITE_API_URL ||
+  "https://instangram-feed-backend.onrender.com/api";
+
 
   const [isLoginView, setIsLoginView] = useState(true);
 
@@ -47,7 +50,7 @@ async function handleLoginSubmit(e) {
       fullName: e.target[0].value,
       email: e.target[1].value,
       password: e.target[2].value,
-      avatar: e.target[3].value
+      avatar: e.target[3].value,
     }
     try {
       let res = await axios.post(`${apiUrl}/user/register/`, data)

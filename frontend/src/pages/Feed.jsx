@@ -3,7 +3,10 @@ import axios from "axios";
 
 export default function Feed() {
   const [user, setUser] = useState({});
-  const apiUrl = import.meta.env.VITE_API_URL || "https://instangram-feed-backend.onrender.com";
+  const apiUrl =
+  import.meta.env.VITE_API_URL ||
+  "https://instangram-feed-backend.onrender.com/api";
+
   const [posts, setPosts] = useState([]);
   const [isPosting, setIsPosting] = useState(false);
 
