@@ -13,14 +13,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-%h_d!e72nr9lv$_0lg-_s7v=s%%u%7972$5#$r!qijm+yi5e92'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = [
-     "instangram-feed-backend.onrender.com",
-    "localhost",
-    "127.0.0.1",        
-
-]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -50,16 +45,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-   "http://localhost:5173",
-   "https://instangram-feed-frontend.onrender.com",  # if frontend is on Render
-]
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://instangram-feed-frontend.onrender.com",
-]
+CORS_ALLOW_ALL_ORIGINS = True
 
-CORS_ALLOW_CREDENTIALS = False
+
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -127,6 +116,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
