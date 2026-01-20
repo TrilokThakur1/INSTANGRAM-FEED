@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Auth({ user, setUser }) {
   const navigate = useNavigate();
-  const apiUrl = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000/api";
+  const apiUrl = import.meta.env.VITE_API_URL || "https://instangram-feed-backend.onrender.com";
 
   const [isLoginView, setIsLoginView] = useState(true);
 
