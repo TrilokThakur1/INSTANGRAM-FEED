@@ -13,9 +13,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-%h_d!e72nr9lv$_0lg-_s7v=s%%u%7972$5#$r!qijm+yi5e92'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+     "instangram-feed-backend.onrender.com",
+    "localhost",
+    "127.0.0.1",        
+
+]
 
 
 # Application definition
@@ -46,7 +51,12 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
+   "http://localhost:5173",
+   "https://instangram-feed-frontend.onrender.com",  # if frontend is on Render
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://instangram-feed-frontend.onrender.com",
 ]
 
 CORS_ALLOW_CREDENTIALS = False
