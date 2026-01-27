@@ -13,14 +13,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-%h_d!e72nr9lv$_0lg-_s7v=s%%u%7972$5#$r!qijm+yi5e92'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = [
-
-    "instangram-feed-backend.onrender.com/api",
-    "localhost",
-    "127.0.0.1",
-]
+ALLOWED_HOSTS = []
 
 
 # Application definition
