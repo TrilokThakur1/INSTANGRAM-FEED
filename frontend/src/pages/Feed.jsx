@@ -5,7 +5,7 @@ export default function Feed() {
   const [user, setUser] = useState({});
   const apiUrl =
   import.meta.env.VITE_API_URL ||
-  "https://instangram-feed-backend.onrender.com/api";
+  "http://127.0.0.1:8000/api";
 
   const [posts, setPosts] = useState([]);
   const [isPosting, setIsPosting] = useState(false);
